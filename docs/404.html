@@ -3,13 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <title>ระบบบริหารจัดการครุภัณฑ์และคลังวัสดุโรงพยาบาล</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✚</text></svg>" />
     <script>
-      // GitHub Pages SPA redirect
       (function() {
-        var pathSegments = window.location.pathname.split('/');
-        var repoName = pathSegments[1] || '';
+        var p = window.location.pathname;
+        // Do not redirect missing static resource files (.js, .css, .ico, .png, .jpg, .svg, etc.)
+        if (p.indexOf('.') !== -1 && !p.endsWith('.html')) return;
+        
+        var pathSegments = p.split('/').filter(Boolean);
+        var repoName = pathSegments[0] || '';
         var search = window.location.search;
         var hash = window.location.hash;
+        
         if (repoName) {
           window.location.replace('/' + repoName + '/' + search + hash);
         } else {

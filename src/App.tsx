@@ -47,12 +47,20 @@ export default function App() {
       }
     } catch (err) {
       console.error('Failed to load app data:', err);
+      try {
+        const fallbackData = await getAppData(null);
+        setData(fallbackData);
+      } catch {}
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && !sessionStorage.getItem('app_started')) {
+      sessionStorage.setItem('app_started', 'true');
+      logout();
+    }
     loadData();
   }, []);
 

@@ -1,11 +1,19 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({ command }) => {
+  // In dev server, always serve from root '/' for AI Studio and local development.
+  // In production build for GitHub Pages, use the repository subpath (e.g. '/Assetssk/')
+  // which works reliably with or without trailing slash and prevents 404 asset lookup errors.
+  const repoName = process.env.GITHUB_REPOSITORY
+    ? process.env.GITHUB_REPOSITORY.split('/')[1]
+    : 'Assetssk';
+  const base = command === 'serve' ? '/' : (process.env.VITE_BASE_PATH || `/${repoName}/`);
+
   return {
-    base: './',
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

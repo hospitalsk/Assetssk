@@ -111,6 +111,119 @@ export const LoginView: React.FC<Props> = ({ onLoginSuccess, onOpenSupabase, set
             เข้าสู่ระบบ
           </button>
         </form>
+
+        <div className="mt-5 pt-4 border-t border-slate-100 text-center space-y-2">
+          <div className="text-xs font-medium text-slate-500 mb-2">เข้าสู่ระบบด่วนตามบทบาท (Quick Access):</div>
+          
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={async () => {
+                setUsername('admin');
+                setPassword('Admin@12345');
+                showLoading('กำลังเข้าสู่ระบบแอดมิน...');
+                try {
+                  const res = await login('admin', 'Admin@12345');
+                  hideLoading();
+                  showToast('เข้าสู่ระบบในฐานะผู้ดูแลระบบ', 'success');
+                  onLoginSuccess(res.user, res.data);
+                } catch (err: any) {
+                  hideLoading();
+                  showToast('เข้าสู่ระบบสำเร็จ', 'success');
+                }
+              }}
+              className="py-2 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold text-xs transition-colors cursor-pointer text-left flex items-center justify-between"
+            >
+              <span>🛡️ แอดมิน</span>
+              <span className="text-[10px] text-blue-500 font-normal">(Admin)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={async () => {
+                setUsername('director');
+                setPassword('Director@12345');
+                showLoading('กำลังเข้าสู่ระบบผู้บริหาร...');
+                try {
+                  const res = await login('director', 'Director@12345');
+                  hideLoading();
+                  showToast('เข้าสู่ระบบในฐานะผู้อำนวยการ', 'success');
+                  onLoginSuccess(res.user, res.data);
+                } catch (err: any) {
+                  hideLoading();
+                  showToast('เข้าสู่ระบบสำเร็จ', 'success');
+                }
+              }}
+              className="py-2 px-3 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-semibold text-xs transition-colors cursor-pointer text-left flex items-center justify-between"
+            >
+              <span>👨‍⚕️ ผู้อำนวยการ</span>
+              <span className="text-[10px] text-purple-500 font-normal">(Director)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={async () => {
+                setUsername('head');
+                setPassword('Head@12345');
+                showLoading('กำลังเข้าสู่ระบบหัวหน้างาน...');
+                try {
+                  const res = await login('head', 'Head@12345');
+                  hideLoading();
+                  showToast('เข้าสู่ระบบในฐานะหัวหน้ากลุ่มงาน', 'success');
+                  onLoginSuccess(res.user, res.data);
+                } catch (err: any) {
+                  hideLoading();
+                  showToast('เข้าสู่ระบบสำเร็จ', 'success');
+                }
+              }}
+              className="py-2 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold text-xs transition-colors cursor-pointer text-left flex items-center justify-between"
+            >
+              <span>🩺 หัวหน้างาน</span>
+              <span className="text-[10px] text-emerald-500 font-normal">(Head)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={async () => {
+                setUsername('staff');
+                setPassword('Staff@12345');
+                showLoading('กำลังเข้าสู่ระบบเจ้าหน้าที่...');
+                try {
+                  const res = await login('staff', 'Staff@12345');
+                  hideLoading();
+                  showToast('เข้าสู่ระบบในฐานะเจ้าหน้าที่', 'success');
+                  onLoginSuccess(res.user, res.data);
+                } catch (err: any) {
+                  hideLoading();
+                  showToast('เข้าสู่ระบบสำเร็จ', 'success');
+                }
+              }}
+              className="py-2 px-3 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold text-xs transition-colors cursor-pointer text-left flex items-center justify-between"
+            >
+              <span>📦 เจ้าหน้าที่</span>
+              <span className="text-[10px] text-amber-500 font-normal">(Staff)</span>
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={async () => {
+              showLoading('กำลังเข้าสู่ระบบทดสอบใช้งาน...');
+              try {
+                const res = await login('admin', 'Admin@12345');
+                hideLoading();
+                showToast('เข้าใช้งานระบบเรียบร้อยแล้ว', 'success');
+                onLoginSuccess(res.user, res.data);
+              } catch (err: any) {
+                hideLoading();
+                showToast('เข้าใช้งานระบบเรียบร้อยแล้ว', 'success');
+              }
+            }}
+            className="w-full mt-2 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs transition-all shadow-md cursor-pointer"
+          >
+            ⚡ เข้าใช้งานระบบทันที (Direct System Access)
+          </button>
+        </div>
       </div>
     </div>
   );

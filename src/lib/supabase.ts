@@ -17,18 +17,20 @@ const getSavedKey = (): string => {
   return (localStorage.getItem(STORAGE_KEY_KEY) || '').trim();
 };
 
+const DEFAULT_SUPABASE_URL = 'https://vnayfqyftzthhkfcynor.supabase.co';
+const DEFAULT_SUPABASE_KEY = 'sb_publishable_ORx5VICPphCfz3HhOoSBjQ_w7edNBYu';
+
 export const getSupabaseConfig = () => {
   const envUrl = getEnvUrl();
   const envKey = getEnvKey();
   const savedUrl = getSavedUrl();
   const savedKey = getSavedKey();
 
-  const url = savedUrl || envUrl || 'https://placeholder.supabase.co';
-  const anonKey = savedKey || envKey || 'placeholder-anon-key';
+  const url = savedUrl || envUrl || DEFAULT_SUPABASE_URL;
+  const anonKey = savedKey || envKey || DEFAULT_SUPABASE_KEY;
   const isEnv = Boolean(envUrl && envKey && !savedUrl && !savedKey);
   const isConfigured = Boolean(
-    (savedUrl && savedKey) ||
-    (envUrl && envKey && !envUrl.includes('placeholder') && !envUrl.includes('your-project'))
+    url && anonKey && !url.includes('placeholder') && url.startsWith('http')
   );
 
   return { url, anonKey, isConfigured, isEnv, savedUrl, savedKey };
