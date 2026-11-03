@@ -77,8 +77,8 @@ const SESSION_KEY = 'hospital_session_user';
 
 export const DEFAULT_SETTINGS: SystemSettings = {
   appName: 'ระบบจัดการเวชภัณฑ์และคลังวัสดุ',
-  appSubName: 'โรงพยาบาลสังขละบุรี • Sangkhlaburi Hospital',
-  appLogo: './assets/aistudio/Logo_SK_26693d5e.png'
+  appSubName: 'ระบบคลังวัสดุ & เวชภัณฑ์โรงพยาบาล',
+  appLogo: '✚'
 };
 
 export function getSystemSettings(): SystemSettings {
@@ -87,7 +87,7 @@ export function getSystemSettings(): SystemSettings {
     const raw = localStorage.getItem(DB_KEY_SETTINGS);
     if (!raw) return DEFAULT_SETTINGS;
     const parsed = JSON.parse(raw);
-    if (parsed.appLogo === '✚' || !parsed.appLogo) {
+    if (parsed.appLogo && (parsed.appLogo.includes('Logo_SK') || parsed.appLogo.includes('logo.png'))) {
       parsed.appLogo = DEFAULT_SETTINGS.appLogo;
       parsed.appSubName = DEFAULT_SETTINGS.appSubName;
       localStorage.setItem(DB_KEY_SETTINGS, JSON.stringify(parsed));
