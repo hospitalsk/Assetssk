@@ -489,7 +489,7 @@ export function logActivity(username: string, action: string, detail: string): v
 // Session Management
 export function getCurrentUser(): SafeUser | null {
   try {
-    const raw = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
+    const raw = sessionStorage.getItem(SESSION_KEY);
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -499,10 +499,8 @@ export function getCurrentUser(): SafeUser | null {
 export function setCurrentUser(user: SafeUser | null): void {
   if (user) {
     sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
-    localStorage.setItem(SESSION_KEY, JSON.stringify(user));
   } else {
     sessionStorage.removeItem(SESSION_KEY);
-    localStorage.removeItem(SESSION_KEY);
   }
 }
 
