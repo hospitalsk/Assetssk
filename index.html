@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ระบบจัดการเวชภัณฑ์และคลังวัสดุโรงพยาบาล</title>
-    <meta name="description" content="ระบบจัดการเวชภัณฑ์ ทะเบียนทรัพย์สิน แจ้งซ่อม คลังวัสดุสิ้นเปลือง ตัดสต็อก และจัดสรรทรัพยากรตามหน่วยงาน" />
-    <meta property="og:title" content="ระบบจัดการเวชภัณฑ์และคลังวัสดุโรงพยาบาล" />
-    <meta property="og:description" content="ระบบจัดการเวชภัณฑ์ ทะเบียนทรัพย์สิน แจ้งซ่อม คลังวัสดุสิ้นเปลือง ตัดสต็อก และจัดสรรทรัพยากรตามหน่วยงาน" />
+    <title>ระบบบริหารจัดการครุภัณฑ์และคลังวัสดุโรงพยาบาล</title>
+    <meta name="description" content="ระบบบริหารจัดการครุภัณฑ์ ทะเบียนทรัพย์สิน แจ้งซ่อม คลังวัสดุสิ้นเปลือง ตัดสต็อก และจัดสรรทรัพยากรตามหน่วยงาน เชื่อมต่อ Supabase" />
+    <meta property="og:title" content="ระบบบริหารจัดการครุภัณฑ์และคลังวัสดุโรงพยาบาล" />
+    <meta property="og:description" content="ระบบบริหารจัดการครุภัณฑ์ ทะเบียนทรัพย์สิน แจ้งซ่อม คลังวัสดุสิ้นเปลือง ตัดสต็อก และจัดสรรทรัพยากรตามหน่วยงาน เชื่อมต่อ Supabase" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✚</text></svg>" />
@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script>
-      // Ensure trailing slash on subpath URLs for relative assets
+      // Ensure trailing slash on GitHub Pages subpaths so relative assets (./assets/...) load correctly
       (function() {
         var p = window.location.pathname;
         if (p && !p.endsWith('/') && p.indexOf('.') === -1) {
@@ -22,18 +22,17 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-DPHS6E0y.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B1p0W61P.css">
   </head>
   <body>
     <div id="root">
       <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #0f172a; color: #fff; font-family: 'Prompt', sans-serif;">
         <div style="text-align: center;">
-          <div style="font-size: 32px; margin-bottom: 12px; color: #3b82f6;">✚</div>
-          <div style="font-size: 16px; font-weight: 600;">กำลังโหลดระบบจัดการเวชภัณฑ์และคลังวัสดุ...</div>
+          <div style="font-size: 28px; margin-bottom: 12px;">✚</div>
+          <div style="font-size: 16px; font-weight: 600;">กำลังโหลดระบบบริหารจัดการครุภัณฑ์และคลังวัสดุ...</div>
           <div style="font-size: 12px; color: #94a3b8; margin-top: 6px;">Hospital Asset & Inventory Management</div>
         </div>
       </div>
     </div>
+    <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

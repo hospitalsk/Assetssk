@@ -92,10 +92,7 @@ export const Sidebar: React.FC<Props> = ({
     settings?.appLogo &&
     (settings.appLogo.startsWith('data:image') ||
       settings.appLogo.startsWith('http://') ||
-      settings.appLogo.startsWith('https://') ||
-      settings.appLogo.startsWith('/') ||
-      settings.appLogo.startsWith('./') ||
-      settings.appLogo.includes('.'));
+      settings.appLogo.startsWith('https://'));
 
   return (
     <>
@@ -120,7 +117,7 @@ export const Sidebar: React.FC<Props> = ({
               <img
                 src={settings?.appLogo}
                 alt="Logo"
-                className="w-9 h-9 rounded-full object-contain bg-white p-0.5 shrink-0"
+                className="w-9 h-9 rounded-xl object-contain bg-white/10 p-1 shrink-0"
               />
             ) : (
               <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm shrink-0">

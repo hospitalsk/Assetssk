@@ -36,19 +36,15 @@ export const LoginView: React.FC<Props> = ({ onLoginSuccess, onOpenSupabase, set
   };
 
   const isCustomLogo =
-    settings.appLogo.startsWith('data:image') ||
-    settings.appLogo.startsWith('http') ||
-    settings.appLogo.startsWith('/') ||
-    settings.appLogo.startsWith('./') ||
-    settings.appLogo.includes('.');
+    settings.appLogo.startsWith('data:image') || settings.appLogo.startsWith('http');
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 font-sans">
       <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100/20 text-slate-800">
         <div className="flex flex-col items-center text-center mb-6">
-          <div className="w-20 h-20 rounded-full bg-white text-blue-600 flex items-center justify-center font-bold text-2xl shadow-md p-1 mb-3 overflow-hidden border border-slate-100">
+          <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-2xl shadow-inner mb-3 overflow-hidden">
             {isCustomLogo ? (
-              <img src={settings.appLogo} alt="Logo" className="w-full h-full object-contain" />
+              <img src={settings.appLogo} alt="Logo" className="w-full h-full object-cover" />
             ) : (
               <span>{settings.appLogo}</span>
             )}
