@@ -894,14 +894,13 @@ export async function login(username: string, pass: string): Promise<{ user: Saf
 
   if (useSupabase) {
     try {
-      const res = await withTimeout(
+      const res: any = await Promise.resolve(
         supabase
           .from('users')
           .select('*')
           .ilike('username', cleanUsername)
           .eq('active', true)
-          .maybeSingle(),
-        1000
+          .maybeSingle()
       ).catch(() => null);
 
       if (res && !res.error && res.data) {

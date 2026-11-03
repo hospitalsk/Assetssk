@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <title>ระบบจัดการเวชภัณฑ์และคลังวัสดุ - โรงพยาบาลสังขละบุรี</title>
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <script>
+      (function() {
+        var p = window.location.pathname;
+        // Do not redirect missing static resource files (.js, .css, .ico, .png, .jpg, .svg, etc.)
+        if (p.indexOf('.') !== -1 && !p.endsWith('.html')) return;
+        
+        var pathSegments = p.split('/').filter(Boolean);
+        var repoName = pathSegments[0] || '';
+        var search = window.location.search;
+        var hash = window.location.hash;
+        
+        if (repoName) {
+          window.location.replace('/' + repoName + '/' + search + hash);
+        } else {
+          window.location.replace('/' + search + hash);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div style="font-family: sans-serif; text-align: center; padding: 50px;">
+      กำลังโหลดระบบ...
+    </div>
+  </body>
+</html>
