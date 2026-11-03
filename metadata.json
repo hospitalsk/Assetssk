@@ -1,0 +1,6 @@
+{
+  "name": "ระบบบริหารจัดการครุภัณฑ์และคลังวัสดุโรงพยาบาล",
+  "description": "ระบบบริหารจัดการครุภัณฑ์ ทะเบียนทรัพย์สิน แจ้งซ่อม คลังวัสดุสิ้นเปลือง ตัดสต็อก และจัดสรรทรัพยากรตามหน่วยงาน เชื่อมต่อ Supabase",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
