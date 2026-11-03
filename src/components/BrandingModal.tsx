@@ -68,7 +68,12 @@ export const BrandingModal: React.FC<Props> = ({
     onClose();
   };
 
-  const isCustomImage = appLogo.startsWith('data:image') || appLogo.startsWith('http');
+  const isCustomImage =
+    appLogo.startsWith('data:image') ||
+    appLogo.startsWith('http') ||
+    appLogo.startsWith('/') ||
+    appLogo.startsWith('./') ||
+    appLogo.includes('.');
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
@@ -89,11 +94,11 @@ export const BrandingModal: React.FC<Props> = ({
         <form onSubmit={handleSave} className="space-y-4">
           {/* Live Preview Box */}
           <div className="p-4 rounded-xl bg-slate-900 text-white flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-xl overflow-hidden shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center font-bold text-xl overflow-hidden shrink-0 p-0.5">
               {isCustomImage ? (
-                <img src={appLogo} alt="Logo" className="w-full h-full object-cover" />
+                <img src={appLogo} alt="Logo" className="w-full h-full object-contain" />
               ) : (
-                <span>{appLogo}</span>
+                <span className="text-blue-600">{appLogo}</span>
               )}
             </div>
             <div className="overflow-hidden">

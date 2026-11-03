@@ -77,15 +77,22 @@ const SESSION_KEY = 'hospital_session_user';
 
 export const DEFAULT_SETTINGS: SystemSettings = {
   appName: 'ระบบจัดการเวชภัณฑ์และคลังวัสดุ',
-  appSubName: 'โรงพยาบาล • Hospital Medical & Inventory',
-  appLogo: '✚'
+  appSubName: 'โรงพยาบาลสังขละบุรี • Sangkhlaburi Hospital',
+  appLogo: './assets/aistudio/Logo_SK_26693d5e.png'
 };
 
 export function getSystemSettings(): SystemSettings {
   if (typeof window === 'undefined') return DEFAULT_SETTINGS;
   try {
     const raw = localStorage.getItem(DB_KEY_SETTINGS);
-    return raw ? { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } : DEFAULT_SETTINGS;
+    if (!raw) return DEFAULT_SETTINGS;
+    const parsed = JSON.parse(raw);
+    if (parsed.appLogo === '✚' || !parsed.appLogo) {
+      parsed.appLogo = DEFAULT_SETTINGS.appLogo;
+      parsed.appSubName = DEFAULT_SETTINGS.appSubName;
+      localStorage.setItem(DB_KEY_SETTINGS, JSON.stringify(parsed));
+    }
+    return { ...DEFAULT_SETTINGS, ...parsed };
   } catch {
     return DEFAULT_SETTINGS;
   }
@@ -894,13 +901,15 @@ export async function login(username: string, pass: string): Promise<{ user: Saf
 
   if (useSupabase) {
     try {
-      const res = await withTimeout(
-        supabase
-          .from('users')
-          .select('*')
-          .ilike('username', cleanUsername)
-          .eq('active', true)
-          .maybeSingle(),
+      const res: any = await withTimeout(
+        Promise.resolve(
+          supabase
+            .from('users')
+            .select('*')
+            .ilike('username', cleanUsername)
+            .eq('active', true)
+            .maybeSingle()
+        ),
         1000
       ).catch(() => null);
 
